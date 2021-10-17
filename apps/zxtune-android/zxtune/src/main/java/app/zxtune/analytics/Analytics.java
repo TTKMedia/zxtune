@@ -4,6 +4,7 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 
 import androidx.annotation.IntDef;
 import androidx.collection.LongSparseArray;
@@ -11,6 +12,7 @@ import androidx.collection.LongSparseArray;
 import java.lang.annotation.Retention;
 import java.util.HashMap;
 
+import app.zxtune.BuildConfig;
 import app.zxtune.core.Player;
 import app.zxtune.playback.PlayableItem;
 
@@ -19,7 +21,9 @@ public class Analytics {
   private static Sink[] sinks = {};
 
   public static void initialize(Context ctx) {
-    sinks = new Sink[]{new InternalSink(ctx)};
+    if (!"robolectric".equals(Build.PRODUCT)) {
+      sinks = new Sink[]{new InternalSink(ctx)};
+    }
   }
 
   public static void logException(Throwable e) {
