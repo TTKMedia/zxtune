@@ -31,10 +31,10 @@ class QueryTest {
             assertEquals(uri, Query.resolveUriFor(Uri.parse(PATH)))
         }
         Uri.parse("${AUTHORITY}/resolve").let { uri ->
-            assertEquals(MIME_ITEM, Query.mimeTypeOf(uri))
-            assertEquals(Uri.EMPTY, Query.getPathFrom(uri))
+            assertThrowsIllegalArgumentException { Query.mimeTypeOf(uri) }
+            assertThrowsIllegalArgumentException { Query.getPathFrom(uri) }
             assertThrowsIllegalArgumentException { Query.getQueryFrom(uri) }
-            assertEquals(Query.TYPE_RESOLVE, Query.getUriType(uri))
+            assertEquals(-1, Query.getUriType(uri))
         }
     }
 
@@ -48,10 +48,10 @@ class QueryTest {
             assertEquals(uri, Query.listingUriFor(Uri.parse(PATH)))
         }
         Uri.parse("${AUTHORITY}/listing").let { uri ->
-            assertEquals(MIME_GROUP, Query.mimeTypeOf(uri))
-            assertEquals(Uri.EMPTY, Query.getPathFrom(uri))
+            assertThrowsIllegalArgumentException { Query.mimeTypeOf(uri) }
+            assertThrowsIllegalArgumentException { Query.getPathFrom(uri) }
             assertThrowsIllegalArgumentException { Query.getQueryFrom(uri) }
-            assertEquals(Query.TYPE_LISTING, Query.getUriType(uri))
+            assertEquals(-1, Query.getUriType(uri))
         }
     }
 
@@ -65,10 +65,10 @@ class QueryTest {
             assertEquals(uri, Query.parentsUriFor(Uri.parse(PATH)))
         }
         Uri.parse("${AUTHORITY}/parents").let { uri ->
-            assertEquals(MIME_SIMPLEITEMS, Query.mimeTypeOf(uri))
-            assertEquals(Uri.EMPTY, Query.getPathFrom(uri))
+            assertThrowsIllegalArgumentException { Query.mimeTypeOf(uri) }
+            assertThrowsIllegalArgumentException { Query.getPathFrom(uri) }
             assertThrowsIllegalArgumentException { Query.getQueryFrom(uri) }
-            assertEquals(Query.TYPE_PARENTS, Query.getUriType(uri))
+            assertEquals(-1, Query.getUriType(uri))
         }
     }
 
