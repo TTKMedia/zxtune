@@ -482,6 +482,7 @@ namespace Module::ETracker
       {
         props.SetSource(*container);
         props.SetPlatform(Platforms::SAM_COUPE);
+        props.SetChannels({"A0", "B0", "C0", "N0", "E0", "A1", "B1", "C1", "N1", "E1"});
         auto chiptune = MakePtr<Chiptune>(dataBuilder.CaptureResult(), std::move(properties));
         return SAA::CreateHolder(std::move(chiptune));
       }
